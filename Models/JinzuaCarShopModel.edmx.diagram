@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="ef92c0014ca74cd38347f75e3e96aefc" Name="Diagram1">
+        <EntityTypeShape EntityType="JinzuaCarShopModel.brand" Width="1.5" PointX="0.75" PointY="3" IsExpanded="true" />
+        <EntityTypeShape EntityType="JinzuaCarShopModel.category" Width="1.5" PointX="0.625" PointY="0.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="JinzuaCarShopModel.customer" Width="1.5" PointX="10.125" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="JinzuaCarShopModel.order_items" Width="1.5" PointX="5.625" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="JinzuaCarShopModel.order" Width="1.5" PointX="8.125" PointY="0.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="JinzuaCarShopModel.product" Width="1.5" PointX="2.875" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="JinzuaCarShopModel.staff" Width="1.5" PointX="8.125" PointY="3.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="JinzuaCarShopModel.stock" Width="1.5" PointX="3" PointY="4.875" IsExpanded="true" />
+        <AssociationConnector Association="JinzuaCarShopModel.FK__products__brand___2D27B809" ManuallyRouted="false" />
+        <AssociationConnector Association="JinzuaCarShopModel.FK__products__catego__2C3393D0" ManuallyRouted="false" />
+        <AssociationConnector Association="JinzuaCarShopModel.FK__orders__customer__31EC6D26" ManuallyRouted="false" />
+        <AssociationConnector Association="JinzuaCarShopModel.FK__order_ite__order__35BCFE0A" ManuallyRouted="false" />
+        <AssociationConnector Association="JinzuaCarShopModel.FK__order_ite__produ__36B12243" ManuallyRouted="false" />
+        <AssociationConnector Association="JinzuaCarShopModel.FK__orders__staff_id__32E0915F" ManuallyRouted="false" />
+        <AssociationConnector Association="JinzuaCarShopModel.FK__stocks__product___398D8EEE" ManuallyRouted="false" />
+        <AssociationConnector Association="JinzuaCarShopModel.FK__staffs__manager___25869641" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

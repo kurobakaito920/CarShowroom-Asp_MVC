@@ -1,0 +1,229 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="CarShowroomModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="brands">
+    <Key>
+      <PropertyRef Name="brand_id" />
+    </Key>
+    <Property Name="brand_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="brand_name" Type="varchar" MaxLength="225" Nullable="false" />
+  </EntityType>
+  <EntityType Name="categories">
+    <Key>
+      <PropertyRef Name="category_id" />
+    </Key>
+    <Property Name="category_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="category_name" Type="varchar" MaxLength="225" Nullable="false" />
+  </EntityType>
+  <EntityType Name="customers">
+    <Key>
+      <PropertyRef Name="customer_id" />
+    </Key>
+    <Property Name="customer_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="customer_name" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="phone" Type="varchar" MaxLength="25" />
+    <Property Name="email" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="street" Type="varchar" MaxLength="255" />
+    <Property Name="city" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="products">
+    <Key>
+      <PropertyRef Name="product_id" />
+    </Key>
+    <Property Name="product_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="product_name" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="brand_id" Type="int" Nullable="false" />
+    <Property Name="category_id" Type="int" Nullable="false" />
+    <Property Name="model_year" Type="smallint" Nullable="false" />
+    <Property Name="description" Type="varchar(max)" />
+    <Property Name="images" Type="varchar" MaxLength="200" />
+  </EntityType>
+  <EntityType Name="staffs">
+    <Key>
+      <PropertyRef Name="staff_id" />
+    </Key>
+    <Property Name="staff_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="first_name" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="last_name" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="email" Type="varchar" MaxLength="225" Nullable="false" />
+    <Property Name="phone" Type="varchar" MaxLength="50" />
+    <Property Name="active" Type="tinyint" Nullable="false" />
+    <Property Name="manager_id" Type="int" />
+  </EntityType>
+  <EntityType Name="stocks">
+    <Key>
+      <PropertyRef Name="product_id" />
+    </Key>
+    <Property Name="product_id" Type="int" Nullable="false" />
+    <Property Name="quantity" Type="int" />
+  </EntityType>
+  <EntityType Name="text_drive_items">
+    <Key>
+      <PropertyRef Name="order_id" />
+      <PropertyRef Name="item_id" />
+    </Key>
+    <Property Name="order_id" Type="int" Nullable="false" />
+    <Property Name="item_id" Type="int" Nullable="false" />
+    <Property Name="product_id" Type="int" Nullable="false" />
+    <Property Name="quantity" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="text_drives">
+    <Key>
+      <PropertyRef Name="order_id" />
+    </Key>
+    <Property Name="order_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="customer_id" Type="int" />
+    <Property Name="order_status" Type="tinyint" Nullable="false" />
+    <Property Name="order_date" Type="date" Nullable="false" />
+    <Property Name="staff_id" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="FK__products__brand___2D27B809">
+    <End Role="brands" Type="Self.brands" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="products" Type="Self.products" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="brands">
+        <PropertyRef Name="brand_id" />
+      </Principal>
+      <Dependent Role="products">
+        <PropertyRef Name="brand_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__products__catego__2C3393D0">
+    <End Role="categories" Type="Self.categories" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="products" Type="Self.products" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="categories">
+        <PropertyRef Name="category_id" />
+      </Principal>
+      <Dependent Role="products">
+        <PropertyRef Name="category_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__staffs__manager___25869641">
+    <End Role="staffs" Type="Self.staffs" Multiplicity="0..1" />
+    <End Role="staffs1" Type="Self.staffs" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="staffs">
+        <PropertyRef Name="staff_id" />
+      </Principal>
+      <Dependent Role="staffs1">
+        <PropertyRef Name="manager_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__stocks__product___398D8EEE">
+    <End Role="products" Type="Self.products" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="stocks" Type="Self.stocks" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="products">
+        <PropertyRef Name="product_id" />
+      </Principal>
+      <Dependent Role="stocks">
+        <PropertyRef Name="product_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__text_driv__custo__31EC6D26">
+    <End Role="customers" Type="Self.customers" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="text_drives" Type="Self.text_drives" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="customers">
+        <PropertyRef Name="customer_id" />
+      </Principal>
+      <Dependent Role="text_drives">
+        <PropertyRef Name="customer_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__text_driv__order__35BCFE0A">
+    <End Role="text_drives" Type="Self.text_drives" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="text_drive_items" Type="Self.text_drive_items" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="text_drives">
+        <PropertyRef Name="order_id" />
+      </Principal>
+      <Dependent Role="text_drive_items">
+        <PropertyRef Name="order_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__text_driv__produ__36B12243">
+    <End Role="products" Type="Self.products" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="text_drive_items" Type="Self.text_drive_items" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="products">
+        <PropertyRef Name="product_id" />
+      </Principal>
+      <Dependent Role="text_drive_items">
+        <PropertyRef Name="product_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__text_driv__staff__32E0915F">
+    <End Role="staffs" Type="Self.staffs" Multiplicity="1" />
+    <End Role="text_drives" Type="Self.text_drives" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="staffs">
+        <PropertyRef Name="staff_id" />
+      </Principal>
+      <Dependent Role="text_drives">
+        <PropertyRef Name="staff_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="CarShowroomModelStoreContainer">
+    <EntitySet Name="brands" EntityType="Self.brands" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="categories" EntityType="Self.categories" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="customers" EntityType="Self.customers" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="products" EntityType="Self.products" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="staffs" EntityType="Self.staffs" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="stocks" EntityType="Self.stocks" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="text_drive_items" EntityType="Self.text_drive_items" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="text_drives" EntityType="Self.text_drives" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__products__brand___2D27B809" Association="Self.FK__products__brand___2D27B809">
+      <End Role="brands" EntitySet="brands" />
+      <End Role="products" EntitySet="products" />
+    </AssociationSet>
+    <AssociationSet Name="FK__products__catego__2C3393D0" Association="Self.FK__products__catego__2C3393D0">
+      <End Role="categories" EntitySet="categories" />
+      <End Role="products" EntitySet="products" />
+    </AssociationSet>
+    <AssociationSet Name="FK__staffs__manager___25869641" Association="Self.FK__staffs__manager___25869641">
+      <End Role="staffs" EntitySet="staffs" />
+      <End Role="staffs1" EntitySet="staffs" />
+    </AssociationSet>
+    <AssociationSet Name="FK__stocks__product___398D8EEE" Association="Self.FK__stocks__product___398D8EEE">
+      <End Role="products" EntitySet="products" />
+      <End Role="stocks" EntitySet="stocks" />
+    </AssociationSet>
+    <AssociationSet Name="FK__text_driv__custo__31EC6D26" Association="Self.FK__text_driv__custo__31EC6D26">
+      <End Role="customers" EntitySet="customers" />
+      <End Role="text_drives" EntitySet="text_drives" />
+    </AssociationSet>
+    <AssociationSet Name="FK__text_driv__order__35BCFE0A" Association="Self.FK__text_driv__order__35BCFE0A">
+      <End Role="text_drives" EntitySet="text_drives" />
+      <End Role="text_drive_items" EntitySet="text_drive_items" />
+    </AssociationSet>
+    <AssociationSet Name="FK__text_driv__produ__36B12243" Association="Self.FK__text_driv__produ__36B12243">
+      <End Role="products" EntitySet="products" />
+      <End Role="text_drive_items" EntitySet="text_drive_items" />
+    </AssociationSet>
+    <AssociationSet Name="FK__text_driv__staff__32E0915F" Association="Self.FK__text_driv__staff__32E0915F">
+      <End Role="staffs" EntitySet="staffs" />
+      <End Role="text_drives" EntitySet="text_drives" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

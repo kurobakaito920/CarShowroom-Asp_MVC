@@ -1,0 +1,36 @@
+﻿@model web_car_demo2.Models.product
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/admin/Views/Shared/_Admin.cshtml";
+}
+<style>
+    img {
+        width: 600px;
+    }
+</style>
+<div class="container">
+    <div class="row">
+        <div class="col-md-5">
+            <h5>PROJECT DETAILS</h5>
+            <div class="project-info-box">
+                <p><b>Tên sản phẩm:</b> @Model.product_name</p>
+                <p><b>Năm sản xuất:</b> @Model.model_year</p>
+                <p><b>Hãng xe:</b> @Html.DisplayFor(model => model.brand.brand_name) </p>
+                <p><b>Thể loại xe:</b> @Html.DisplayFor(model => model.category.category_name)</p>
+                <b>Mô tả:</b> @Html.Raw(Model.desciption)
+            </div>
+        </div>
+
+        <div class="col-md-7">
+            <img src="~/imagecars/@Model.images" alt="project-image" class="rounded">
+            <div class="project-info-box">
+                <p><b>Giá xe:</b> @Html.DisplayFor(model => model.price) VNĐ</p>
+            </div>
+        </div>
+    </div>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.product_id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

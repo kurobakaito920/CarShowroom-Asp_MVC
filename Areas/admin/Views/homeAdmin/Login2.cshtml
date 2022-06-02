@@ -1,0 +1,41 @@
+﻿
+@{
+    ViewBag.Title = "View";
+    Layout = "~/Views/Shared/_Login.cshtml";
+}
+
+<div class="container">
+    <div class="forms-container">
+        <div class="signin-signup">
+            @using(Html.BeginForm("Login2","homeAdmin", FormMethod.Post, new { @class = "sign-in-form" }))
+            {
+                <h2 class="title">Đăng nhập</h2>
+                <div class="input-field">
+                    <i class="fas fa-user"></i>
+                    <input type="text" name="username" placeholder="Tên tài khoản" />
+                </div>
+                <div class="input-field">
+                    <i class="fas fa-lock"></i>
+                    <input type="password" name="password" placeholder="Mật khẩu" />
+                </div>
+                <input type="submit" value="Đăng nhập" class="btn solid" />
+            }
+        </div>
+    </div>
+
+    <div class="panels-container">
+        <div class="panel left-panel">
+            <div class="content">
+                <h3>Trang đăng nhập chỉ dành cho admin</h3>
+                <p>
+                    Bạn muốn quay lại?
+                </p>
+                <a href="@Url.Action("Index","Home", new { area = "", controller = "Home" })">
+                    <button class="btn transparent" id="sign-up-btn">
+                        Quay lại
+                    </button>
+                </a>
+            </div>
+            <img src="~/Images/undraw_audio_player_yty9.png" class="image" alt="" />
+    </div>
+</div>

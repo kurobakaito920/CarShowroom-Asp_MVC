@@ -1,0 +1,20 @@
+﻿@model IEnumerable<web_car_demo2.Models.product>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="news-detail">
+    @foreach (var item in Model)
+    {
+        <a href="@Url.Action("Details","products", new { id = item.product_id})"  class="card" style="width: 18rem;">
+            <img src="~/imagecars/@item.images" class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">@Html.DisplayFor(modelItem => item.product_name)</h5>
+                <p class="card-text">@Html.DisplayFor(modelItem => item.price)</p>
+            </div>
+        </a>
+    }
+</div>
+
+

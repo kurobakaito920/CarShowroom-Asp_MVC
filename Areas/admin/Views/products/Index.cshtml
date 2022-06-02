@@ -1,0 +1,75 @@
+﻿@model IEnumerable<web_car_demo2.Models.product>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/admin/Views/Shared/_Admin.cshtml";
+}
+<style>
+    img {
+        width: 200px;
+    }
+</style>
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create", new { @class = "btn btn-primary"})
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.product_name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.model_year)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.images)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.price)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.brand.brand_name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.category.category_name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.stock.quantity)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.product_name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.model_year)
+            </td>
+            <td>
+                <img src="~/imagecars/@item.images" />
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.price)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.brand.brand_name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.category.category_name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.stock.quantity)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.product_id }) |
+                @Html.ActionLink("Details", "Details", new { id = item.product_id }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.product_id })
+            </td>
+        </tr>
+     }
+
+</table>

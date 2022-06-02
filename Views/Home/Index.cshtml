@@ -1,0 +1,135 @@
+﻿@model IEnumerable<web_car_demo2.Models.product>
+@{
+    ViewBag.Title = "Home Page";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+<div class="slide-show">
+    <div class="bg-poster">
+        <div class="poster--left">
+            <img src="" alt="" id="left-img">
+        </div>
+        <div class="poster--main">
+            <img src="" alt="" id="main-img">
+        </div>
+        <div class="poster--right">
+            <img src="" alt="" id="right-img">
+        </div>
+    </div>
+</div>
+<div class="featured-product">
+    <div class="product-title">
+        <h2>Sản phẩm nổi bật</h2>
+    </div>
+    <div class="image-slide">
+        @foreach (var item in Model)
+        {
+            <div class="image-list">
+                <div class="image">
+                    <img src="~/imagecars/@item.images">
+                </div>
+                <div class="name-product">
+                    <h5>@Html.DisplayFor(modelItem => item.product_name)</h5>
+                    <a>@Html.DisplayFor(modelItem => item.price) VNĐ</a>
+                </div>
+            </div>
+        }
+        @*<div class="image-list">
+                <div class="image">
+                    <img src="" alt="">
+                </div>
+                <div class="name-product">
+                    <h4>@Html.DisplayNameFor(model => model.product_name)</h4>
+                </div>
+                <div class="price-product">
+                    <h4>1.300.000.000đ</h4>
+                </div>
+            </div>
+            <div class="image-list">
+                <div class="image">
+                    <img src="" alt="">
+                </div>
+            </div>
+            <div class="image-list">
+                <div class="image">
+                    <img src="" alt="">
+                </div>
+            </div>
+            <div class="image-list">
+                <div class="image">
+                    <img src="" alt="">
+                </div>
+            </div>
+            <div class="image-list">
+                <div class="image">
+                    <img src="" alt="">
+                </div>
+            </div>
+            <div class="image-list">
+                <div class="image">
+                    <img src="" alt="">
+                </div>
+            </div>*@
+    </div>
+    <div class="feature-news">
+        <div class="news-title">
+            <h2>Tin tức nổi bật</h2>
+        </div>
+        <div class="news-detail">
+            <div class="card" style="width: 18rem;">
+                <img src="..." class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">Card title</h5>
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    <a href="#" class="btn btn-primary">Go somewhere</a>
+                </div>
+            </div>
+            <div class="card" style="width: 18rem;">
+                <img src="..." class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">Card title</h5>
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    <a href="#" class="btn btn-primary">Go somewhere</a>
+                </div>
+            </div>
+            <div class="card" style="width: 18rem;">
+                <img src="..." class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">Card title</h5>
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    <a href="#" class="btn btn-primary">Go somewhere</a>
+                </div>
+            </div>
+            <div class="card" style="width: 18rem;">
+                <img src="..." class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">Card title</h5>
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    <a href="#" class="btn btn-primary">Go somewhere</a>
+                </div>
+            </div>
+            <div class="card" style="width: 18rem;">
+                <img src="..." class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">Card title</h5>
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    <a href="#" class="btn btn-primary">Go somewhere</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@section scripts{
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('.image-slide').slick({
+                slidesToShow: 5,
+                slidesToScroll: 1,
+                autoplay: true,
+                autoplaySpeed: 2500,
+                arrows: false,
+            });
+        })
+    </script>
+}
